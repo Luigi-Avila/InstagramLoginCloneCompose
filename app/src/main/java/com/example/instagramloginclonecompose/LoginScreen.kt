@@ -143,7 +143,17 @@ fun LoginDivider() {
 
 @Composable
 fun LoginButton(loginEnable: Boolean) {
-    Button(onClick = { }, modifier = Modifier.fillMaxWidth(), enabled = loginEnable) {
+    Button(
+        onClick = { },
+        modifier = Modifier.fillMaxWidth(),
+        enabled = loginEnable,
+        colors = ButtonDefaults.buttonColors(
+            backgroundColor = Color(0xFF4EA8E9),
+            disabledBackgroundColor = Color(0xFF78C8F9),
+            contentColor = Color.White,
+            disabledContentColor = Color.White
+        )
+    ) {
         Text(text = "Log In")
     }
 }
@@ -166,7 +176,7 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
         value = password,
         onValueChange = onTextChanged,
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Password")},
+        placeholder = { Text(text = "Password") },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -177,21 +187,21 @@ fun Password(password: String, onTextChanged: (String) -> Unit) {
             unfocusedIndicatorColor = Color.Transparent
         ),
         trailingIcon = {
-            val image = if (showPassword){
+            val image = if (showPassword) {
                 Icons.Filled.VisibilityOff
             } else {
                 Icons.Filled.Visibility
             }
             IconButton(onClick = { showPassword = !showPassword }) {
-                Icon(imageVector = image, contentDescription ="Password visibility")
+                Icon(imageVector = image, contentDescription = "Password visibility")
             }
         },
-        visualTransformation = if (showPassword){
+        visualTransformation = if (showPassword) {
             VisualTransformation.None
         } else {
             PasswordVisualTransformation()
         }
-        
+
     )
 }
 
@@ -201,7 +211,7 @@ fun Email(email: String, onTextChanged: (String) -> Unit) {
         value = email,
         onValueChange = { onTextChanged(it) },
         modifier = Modifier.fillMaxWidth(),
-        placeholder = { Text(text = "Email")},
+        placeholder = { Text(text = "Email") },
         maxLines = 1,
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
@@ -231,6 +241,7 @@ fun Header(modifier: Modifier) {
     Icon(
         imageVector = Icons.Default.Close,
         contentDescription = "close app",
-        modifier = modifier.clickable { activity.finish()
+        modifier = modifier.clickable {
+            activity.finish()
         })
 }
