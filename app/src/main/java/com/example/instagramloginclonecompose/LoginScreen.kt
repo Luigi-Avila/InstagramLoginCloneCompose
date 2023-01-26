@@ -31,8 +31,10 @@ fun LoginScreen() {
     ) {
         Header(Modifier.align(Alignment.TopEnd))
         Body(Modifier.align(Alignment.Center))
+        Footer(Modifier.align(Alignment.BottomCenter))
     }
 }
+
 
 @Composable
 fun Body(modifier: Modifier) {
@@ -57,9 +59,45 @@ fun Body(modifier: Modifier) {
 }
 
 @Composable
+fun Footer(modifier: Modifier) {
+    Column(modifier = modifier) {
+        Divider(
+            Modifier
+                .background(Color(0xFFF9F9F9))
+                .height(1.dp)
+        )
+        Spacer(modifier = Modifier.size(36.dp))
+        SingUp()
+        Spacer(modifier = Modifier.size(30.dp))
+    }
+}
+
+@Composable
+fun SingUp() {
+    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+        Text(text = "Don't have an account?", fontSize = 12.sp, color = Color(0xFFB5B5B5))
+        Text(
+            text = "Sing Up",
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(horizontal = 6.dp),
+            color = Color(0xFF4EA8E9)
+        )
+    }
+}
+
+@Composable
 fun SocialLogin() {
-    Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center, verticalAlignment = Alignment.CenterVertically) {
-        Image(painter = painterResource(id = R.drawable.fb), contentDescription = "fb logo", modifier = Modifier.size(16.dp))
+    Row(
+        Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(id = R.drawable.fb),
+            contentDescription = "fb logo",
+            modifier = Modifier.size(16.dp)
+        )
         Text(
             text = "Continue As Luigi",
             fontSize = 14.sp,
@@ -115,7 +153,11 @@ fun ForgotPassword(modifier: Modifier) {
 
 @Composable
 fun Password(password: String, onTextChanged: (String) -> Unit) {
-    TextField(value = password, onValueChange = onTextChanged, modifier = Modifier.fillMaxWidth())
+    TextField(
+        value = password,
+        onValueChange = onTextChanged,
+        modifier = Modifier.fillMaxWidth()
+    )
 }
 
 @Composable
